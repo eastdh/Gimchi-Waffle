@@ -1,0 +1,22 @@
+스택.이어서
+
+Stack: LIFO
+Queue: FIFO
+
+================
+s = stack()
+for x in p:
+	if x == '+':
+		a = s.pop()
+		b = s.pop()
+		s.push(a+b)
+	elif x == '*':
+		a, b = s.pop(), s.pop()
+		s.push(a*b)
+	elif x == '/':
+		a, b = s.pop(), s.pop()
+		s.push(b/a)
+	elif x == '-':
+		a, b = s.pop(), s.pop()
+		s.push(a-b)
+		

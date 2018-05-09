@@ -1,0 +1,52 @@
+open addressing
+	-linear probing
+		f(k)->f(k)+1->f(k)+2->...
+	-quadratic probing
+		f(k)->f(k)+1^2->f(k)+2^2->...
+	-double hashing
+
+#hash table func
+	
+def find_slot(key):
+	i = f(key)
+	start = i
+	while H[i] is occupied and H[i].key != key:
+		i = (i+1)%m
+		if i == start:
+			return FULL(None)
+	return i
+	
+def search(key):
+	#key in H -> value
+	#key not in H -> None(NOTFOUND)
+	i = find_slot(key)
+	if H[i] is occupied: return H[i].value
+	else: return None(NOTFOUND)
+	
+def set(key, value):
+	#key in H -> update value
+	#key not in H -> insert(key, value)
+	i = find_slot(key)
+	if i == FULL: return None
+	if H[i] is occupied: #H[i].key == key
+		H[i].value = value
+	else: #key not in H
+		H[i].key = key
+		H[i].value = value
+	return key
+	
+def remove(key):
+	i = find_slot(key)
+	if H[i] is unoccupied: return None
+	j = i
+	while True:
+		H[i] = None #H[i]가 빈 슬롯이 됨.
+		while True:
+			j = (j+1)%m
+			if H[i} is unoccupied: return key
+			k = f(H[j].key)
+			if not (i<k<=j or j<i<k or k<=j<=i) #파이썬에서는 가능한 문법! #break 의 이유를 생각해보자!
+				break
+		H[i] = H[j]
+		i = j
+		

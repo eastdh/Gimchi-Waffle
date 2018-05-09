@@ -1,0 +1,22 @@
+클래스
+class calculator:
+	result = [] #선언&초기화: 멤버 변수
+	def add(self,num): #멤버 메쏘드
+		self.result += num
+
+a = calculator() #생성자 호출
+b = calculator()
+
+a.add(10) # add(a, 10)
+b.add(8)
+
+class calculator:
+	def __init__(self): #앞에 underbar가 두개 들어가는 함수는 특별한 기능 수행(추후 설명)
+		self.result = 0
+	def add(self.num):
+		self.result += num
+
+a = calculator()
+b = calculator()
+a.add(10)
+b.add(8)

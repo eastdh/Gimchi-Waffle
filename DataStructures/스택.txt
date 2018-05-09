@@ -1,0 +1,72 @@
+a = [2, -1, 9, 10, 7, 6]
+a.append(3)
+a = [2, -1, 9, 10, 7, 6, 3]
+a.pop()
+a = [2, -1, 9, 10, 7, 6]
+a.pop(0)
+a = [-1, 9, 10, 7, 6]
+a.insert(2, 8)
+a = [-1, 9, 8, 10, 7, 6]
+
+Stack:
+	push(x)
+	pop(something)
+	top(): 맨 위 원소를 반환
+	len(): 길이
+	isEmpty(): 비어있는지
+
+stack = LIFO: Last In First Out
+
+#stack_queue.py_start==================================================
+calss stack:
+	def __init__(self):
+		self.items=[]
+	def push(self, val):
+		self.items.append(val)
+	def pop(self):
+		try:
+			return self.items.pop()
+		except IndexError:#스택이 모두 비어있는 상태에서 pop 을 또 다시 실행했을 때
+			print("The stack is EMPTY!!")
+	def top(self):
+		try:
+			return self.items[-1] #가장 오른쪽 원소
+		except IndexError: #스택이 모두 비어있는 상태에서 top을 실행했을 때
+			print("The stack is EMPTY!!")
+	def __len__(self):
+		return len(self.items)
+	def isEmpty(self):
+		return self.__len__() == 0 #True 또는 False 가 반환
+#stack_queue.py_end====================================================
+
+#stack.py_start======================================================
+from stack_queue import stack -> import stack_queue
+s = stack() -> s = stack_queueStack()
+s.push(10)
+s.push(2)
+print(s.pop()) #2
+print(s.top()) #10
+print(s.isEmpty()) #False
+print(len(s)) #
+#stack.py_end======================================================
+
+괄호 짝 맞추기: 
+	왼쪽 괄호 "(" 가 들어오면 push, 오른쪽 괄호 ")" 가 들어오면 pop.
+	error 가 나지 않으면 괄호의 짝이 잘 맞춰진 것이고,
+	error 가 나면 괄호의 짝이 잘 맞춰지지 않은 것이다.
+	(()())
+	123456
+	1->push 
+	2->push 
+	3->pop
+	4->push 
+	5->pop 
+	6->pop 
+	==>error 가 없었으므로 짝이 제대로 맞춰짐.
+	
+	())()(
+	123456
+	1->push 
+	2->pop 
+	3->pop #error!!
+	==> error 가 발생했으므로 짝이 제대로 맞춰지지 않음.

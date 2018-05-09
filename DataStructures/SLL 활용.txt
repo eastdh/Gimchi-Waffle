@@ -1,0 +1,18 @@
+SLL 활용 - search 함수: 해당 노드 리턴 or None 리턴
+
+def search(self, key):
+	v = self.head
+	while v != None:
+		if v.key == key:
+			return v
+		v = v.next
+	return v # return None
+	
+	search = O(n)
+	
+def __iter __(self):	
+	v = self.hea
+	while v= None:
+	yield
+	v = v.next
+	

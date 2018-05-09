@@ -1,0 +1,8 @@
+O(1): 상수 시간(constant time)
+O(log2(n)): 로그 시간 (logarithmic time)
+O(n): 선형 시간 (linear time)
+O(nlog2(n)): 
+O(n^2): quadratic time
+O(n^3): cubic time
+O(2^n): exponential time
+#위에서 밑으로 내려올수록 slow.

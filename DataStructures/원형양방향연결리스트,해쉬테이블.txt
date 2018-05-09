@@ -1,0 +1,97 @@
+search
+
+move
+	moveAfter(a, x)
+	moveBefore(a, x)
+insert
+	insertAfter, insertBefore
+	pushFront, pushBack
+delete
+	remove(x)
+	deleteNode(x)
+	popFront
+	popBack
+	
+hash table 함수들
+
+1. Division
+	f(key) = key % m or (key %p)%m  p: m 보다 큰 소수
+	
+2. Folding 계좌번호: 1254 - 387 - 601
+	-shift (12+54+38+76+01)%m 
+	-boundary (12+45+38+67+01)%m 
+	
+3. Mid - square  key=3121
+	3121^2 = 97'406'41 ==> 406%m 
+	
+4. Extraction  계좌번호: 1254-387-601
+	각 무더기 마다 몇가지씩 조합해서 ...
+	==> 121%m 
+	
+key 값이 string 일 때. key = "chansu"
+5. additive hash 
+	((key[0]+key[1]+...+key[-1])%p) %m
+	
+6.	rotating_hash(key, p, m):
+		h = initial_value
+		for i in range(len(key)):
+			h = (h<<4)^(h>>28)^key[i]
+		return h%p%m 
+	
+	universal_hash(key, a, p, m):
+		h = initial_value
+		for i in range(len(key)):
+			h = ((h*a) + key[i]) %p 
+		return h%m
+	
+	Bernstein hash: initial_value = 5381, a = 33
+	STLPort 4.6.2 hash: initial_value = 0, a = 5
+	java.lang.string.hashCode(): initial_value = 0, a = 31
+	
+	
+	
+f(k')=2
+f(k)=2
+==> collision 발생
+c-universal hash f
+ -prob(f(x)==f(y))
+	=c/m
+	
+	
+collision resolution method  (p.101)
+	-open addressing
+		.linear probing*
+		.quadratic probing 
+		.double hashing
+	-chaining*
+	
+	linear probing
+		A5, A2, A3, B5, A9, B2, B9, C2(테이블의 크기는 10)
+		1. A5 를 테이블의 5에 넣음
+		2. A2 를 테이블의 2에 넣음
+		3. A3 를 테이블의 3에 넣음
+		4. B5 를 테이블의 5에 넣음 - 이미 5가 차있음 ==>테이블의 6에 넣음
+		5. A9 를 테이블의 9에 넣음
+		6. B2 를 테이블의 2에 넣음 - 이미 2가 차있음 ==>테이블의 3에 넣음 - 이미 3이 차있음 ==>테이블의 4에 넣음
+		7. B9 를 테이블의 9에 넣음 - 이미 9가 차있음 ==>다시 테이블의 맨 앞으로 돌아가 0에 넣음
+		8. C2 를 테이블의 2에 넣음 - - - - ==> 테이블의 7에 넣음
+		테이블의 2~7이 연속으로 차있음 = cluster
+		
+	find_slot(key):
+		#key 가 H 에 있다면, slot 번호가 리턴
+		#key 가 H 에 없다면, key 가 삽입될 slot 번호가 리턴
+		#H 에 빈 slot 이 없다면 FULL 리턴
+	ex) find_slot(B5)
+		#먼저 5로 이동 -> B5 가 없음 -> 한칸 내려감 -> B5 있음 -> return 6
+		find_slot(C5)
+		#찾아봤더니 C5 가 없음 -> C5 가 들어갈 자리가 8임 -> return 8
+		find_slot(B1)
+		#찾아봤더니 B1 이 없음 -> 빈 자리도 없음 -> return FULL
+		
+		i = hash_function(key)
+		start = i
+		while(H[i] is occupied) and H[i].key != key):
+			i = (i+1)%m #i = i+1
+			if i == start:
+				return FULL 
+		return i 

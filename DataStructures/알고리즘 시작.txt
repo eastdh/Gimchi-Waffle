@@ -1,0 +1,31 @@
+알고리즘, 자료구조 수행시간 = 최악의 경ㅇ우의 입력에 대한 기본연산 횟수
+**기본연산: 단위시간에 처리가능한 연산
+= 산술, 비교, 논리, 비트논리
+
+예제)
+algorithm arraysum(A, B, n)
+	input: n개의 수를 저장한 1차원 배열 A, B
+	output: 모든 A[i]*B[i]의 합
+	sum = 0 #1
+	for i=0 to n-1 do
+		for j=0 to n-1 do
+			sum += A[i]*B[i] #3
+		end.for_j
+	end.for_i
+	return sum
+	
+알고리즘의 수행시간 = 어떤 연산 하나마다 걸리는 시간을 1이라 가정- 총 걸리는 시간
+T(n) = 3n^2 + 1
+
+간단 표기법: Asymptotic notation
+Big-O notation;:
+	T(n) = 2n-1 ==> n ==> T(n) = O(n)
+	1. 최고차항 이외의 항은 모두 지운다
+	2. 최고차항에 곱해진 상수는 무시한다
+	3. O(최고차항)
+	
+T(n)=3/2*n^2 + 3/2*n + 1
+	==>T(n) = O(n^2) 
+	
+def increment_one(a):
+	return a+1

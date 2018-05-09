@@ -1,0 +1,27 @@
+class node:
+	def __init__(self, key = None, value = None):
+		self.key = key
+		self.value = value
+		self.next = None
+	def __str__(self):
+		return str(self,key)
+
+class singlyLinkedList:
+	def __init__(self):
+		self.head = None
+		self.size = 0
+	def pushFront(self, key, value):
+		new_node = Node(key, value)
+		new_node.next = self.head
+		self.head = new_node
+		self.size += 1
+	def printList(self):
+		v = self.head
+		while v != None:
+			print(v, "->", end=" ")
+			v = v.next
+		print("None")
+		
+		L = singlyLinkedList()
+		l.pushFront(0)
+		

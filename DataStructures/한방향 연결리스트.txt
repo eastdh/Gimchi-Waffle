@@ -1,0 +1,51 @@
+한방향 연결 리스트 Singly Linked List
+
+def pushBack(self, key, value = None):
+	new_node = Node(key, value)
+	if self.size == 0: #self.head == None
+		self.head = new_node
+	else:
+		tail = self.head
+		while tail.next != None:
+			tail = tail.next
+		tail.next = new_node
+	self.size += 1
+	
+pushFront: 맨 앞에 new_node 를 넣음 / new_node 의 link 가 head node 를 가리키게 함 / size 를 1 증가 시킴
+	==> 3번의 시행 (상수 번)
+	==> O(1)
+	
+pushBack: tail 의 끝을 찾을 때 까지 n 번 시행 = 연결 리스트 의 사이즈 만큼 실행
+	==> O(n)
+	
+def popFront(self): #head 를 지움
+	if self.size == 0:
+		return None 
+	else: #head 의 next 가 새로운 head 가 됨
+		key = self.head.key
+		self.head = self.head.next
+		self.size -= 1
+		del head #head node 메모리 해제
+		return key
+		
+def popBack(self):
+	if self.size == 0
+		return None
+	else: 
+		prev, tail = None, self.head
+		while tail.next != None: # prev, tail 을 찾기 위함
+			prev = tail
+			tail = tail.next
+		key = tail.key
+		if self.size == 1: #head == tail 일 때 
+			self.head = None
+		else: 
+			prev.next = tail.next # prev.next = None
+		del tail
+		self.size -= 1
+		return key
+		
+popFront: O(1)
+popBack: O(n)
+
+** 양방향 연결 리스트 는 각 node 에 prev 의 정보도 있기 때문에 tail 을 찾기 위해 오랜 시간을 들이지 않아도 됨

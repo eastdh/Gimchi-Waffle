@@ -1,0 +1,187 @@
+#양방향 연결리스트(DoublyLinkedList) Sample
+
+ 
+
+# 1. class Node 선언 부분
+
+class Node:
+
+	def __init__(self, key = None):
+
+		self.key = key
+
+		self.next = self
+
+		self.prev = self
+
+		
+
+# 2. class DoublyLinkedList 선언부분
+
+class DoublyLinkedList:
+
+	def __init__(self):
+
+		self.head = Node()
+
+		self.size = 0
+
+	
+
+	def __len__(self):
+
+		return self.size
+
+	def __iter__(self):
+
+		v = self.head.next
+
+		while v != self.head:
+
+			yield v
+
+			v = v.next
+
+	
+
+	def splice(self, a, b, x): #clear
+
+		if a == None or b == None or x == None:
+
+			return
+
+		
+
+		ap = a.prev
+
+		bn = b.next
+
+		
+
+		ap.next = bn
+
+		bn.prev = ap
+
+		
+
+		xn = x.next
+
+		xn.prev = b
+
+		b.next = xn
+
+		a.prev = x
+
+		x.next = a
+
+	
+
+	def moveAfter(self, a, x): #clear
+
+		return self.splice(a, a, x)
+
+	
+
+	def moveBefore(self, a, x): #clear
+
+		return self.splice(a, a, x.prev)
+
+	
+
+	def insertBefore(self, x, key): #clear
+
+		self.size += 1
+
+		return self.moveBefore(Node(key), x)
+
+	
+
+	def insertAfter(self, x, key): #clear
+
+		self.size += 1
+
+		return self.moveAfter(Node(key), x)
+
+	
+
+	def pushFront(self, key): #clear
+
+		return self.insertAfter(self.head, key)
+
+		
+
+	def pushBack(self, key): #clear
+
+		return self.insertBefore(self.head, key)
+
+		
+
+	def deleteNode(self, x): #clear
+
+		xp = x.prev
+
+		xn = x.next
+
+		xp.next = xn
+
+		xn.prev = xp
+
+		self.size -= 1
+
+	
+
+	def popFront(self): #clear
+
+		key = self.head.next.key
+
+		self.deleteNode(self.head.next)
+
+		return key
+
+	
+
+	def popBack(self): #clear
+
+		key = self.head.prev.key
+
+		self.deleteNode(self.head.prev)
+
+		return key
+
+	
+
+	
+
+	def search(self, key):
+
+		for v in self:
+
+			if v.key == key:
+
+				return v
+
+		return None
+
+	
+
+	def first(self):
+
+		return self.head.next.key
+
+	
+
+	def last(self):
+
+		return self.head.prev.key
+
+	
+
+	def isEmpty(self):
+
+		return self.__len__() == 0
+
+	
+
+	#def join(self):
+
+	#def split(self):

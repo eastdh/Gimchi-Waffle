@@ -1,0 +1,57 @@
+#파이썬의 경우 함수 사용법
+#1
+def square(x):
+	y = x**2
+	return y
+
+z = square(3)
+print(z)
+
+#2
+def f_many(*args):
+	print(args)
+	return args
+	
+r = f_many(5, 3.14, "Third")#args에 *이 붙어있기 때문에 입력을 여러개해도 됨
+print(r) #(5, 3.14, "Third")
+r = f_many("hello", 2)
+
+#3
+def foo(a, b=15, c=27):
+	print (a,b,c)
+	
+foo(1,2,3) #1 2 3
+foo(1,2) #1 2 27
+foo(1) #1 15 27
+
+#4
+def foo(a, b=15, c):
+	print(a,b,c)
+#불가능!!!!!! why??
+foo(1, 2)
+
+#5
+def f(a, b):
+	return a//b, a%b
+	
+x, y = f(5, 2) #x=2, y=1
+z = f(5,2) #z=(2,1)
+
+#6
+def f(val):
+	var += 'bar'
+	
+x= 'foo' #변경 불가 타입(str, int, float, tuple) 교재 44쪽을 참조하쟈~
+print(x) #foo
+f(x)
+print(x) #?: foo
+
+#7
+#변경 가능 type: list, dict, set
+def f(val):
+	val +=[3, 2, 1]
+	
+x = [1,2,3]
+print(x) #[1,2,3]
+f(x)
+print(x) #[1,2,3,3,2,1]
